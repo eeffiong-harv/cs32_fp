@@ -63,7 +63,7 @@ def main() :
     while start_date_valid == False :
         start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
         try :
-            print(re.fullmatch(r"\d{4}-[1-9]|1[0-2]-[1-9]|[12][0-9]|3[01]", start_date))
+            print(re.fullmatch(r"\d{4}-([1-9]|1[0-2])-([1-9]|[12][0-9]|3[01])", start_date))
             if re.fullmatch(r"\d{4}-[1-9]|1[0-2]-[1-9]|[12][0-9]|3[01]", start_date).span() != (0, 10) :
                 print(f"'{start_date}' is an invalid input. Try again...")
             else:
