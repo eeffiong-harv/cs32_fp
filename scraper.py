@@ -87,20 +87,28 @@ def main() :
             AttributeError
             print(f"'{end_date}' is an invalid input. Try again...")
 
+    print(f"Great! Let's start scraping {len(channel_list)} channels")
 
-    print(api_key, api_hash)
-
-    # client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
+    client = TelegramClient(f'{current_channel} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
     current_channel_num = 0
     current_channel = channel_list[current_channel_num]
-    print(current_channel)
-    
-    print(f'Ready to scrape data from {current_channel})
-    print(f'Great! Attempting to join the {channel_list} TG channel(s) using Key: {api_key} and Hash: {api_hash}...')
+
+    print(f"Connecting to {current_channel}")
+
+    print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date[0:10]} and {end_date[0:10]}")
+
+    # print(api_key, api_hash)
+
+    # client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
+
+    # print(current_channel)
+
+    # print(f'Ready to scrape data from {current_channel}')
+    # print(f'Great! Attempting to join the {channel_list} TG channel(s) using Key: {api_key} and Hash: {api_hash}...')
         # Connect to telegram, report on success or failure
     # join()
 
-    print(f'')
+    # print(f'')
     return
 
 def join(client) :
