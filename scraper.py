@@ -59,15 +59,19 @@ def main() :
     # current_channel_num = 0
     # current_channel = channel_list[current_channel_num]
     # print(current_channel)
+    start_date_valid = False
+    while start_date_valid == False :
+        start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
+        try :
+            if re.fullmatch(r"\d{4}-\d[1:12]-\d[1:31]", start_date).span() != (0, 10) :
+                print(f"'{start_date}' is an invalid input. Try again...")
+            else:
+                start_date_valid = True
+        except :
+            AttributeError
+            print(f"'{start_date}' is an invalid input. Try again...")
 
-    start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
-    print(re.fullmatch(r"\d{4}-\d{2}-\d{2}", start_date))
-    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", start_date) != True:
-        print("FAILURE")
-    else:
-        print("SUCCESS")
-        # Checks if the date is valid
-    end_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
+    end_date = input("What is the end date of your scrape? (Format: YYYY-MM-DD)")
         # Checks if the date is valid
     print(api_key, api_hash)
 
