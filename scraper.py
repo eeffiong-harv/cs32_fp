@@ -23,11 +23,16 @@ def main() :
 
     channel_loop = True
     channel_list = []
+    link_valid = False
 
     while channel_loop == True :
-
-        channel_input = input("What channel you would like to scrape?")
-        channel_list.append(channel_input)
+        while link_valid == False:
+            channel_input = input("What channel you would like to scrape?")
+            if channel_input[0:12] != "https://t.me/" :
+                link_valid = link_valid
+            else:
+                channel_list.append(channel_input)
+                link_valid == True
         while len(channel_list) == 1:
             channel_input = input("What is the second channel you would like to scrape?")
             channel_list.append(channel_input)
