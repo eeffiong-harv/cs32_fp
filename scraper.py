@@ -91,7 +91,7 @@ def main() :
 
     current_channel_num = 0
     current_channel = channel_list[current_channel_num]
-    client = TelegramClient(f'{current_channel} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
+    client = TelegramClient('session_name', api_key, api_hash) # NEED TO FIX FIRST VALUE
 
     print(f"Connecting to {current_channel}")
 
