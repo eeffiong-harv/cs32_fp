@@ -2,6 +2,7 @@ from telethon import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest
 import datetime
 import pandas
+import re
 
 def main() :
 
@@ -60,9 +61,7 @@ def main() :
     # print(current_channel)
 
     start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
-    if start_date.fullmatch(r"[0-9]-") != True:
-        print("FAILURE")
-    if start_date.find('-') == -1 or start_date.isalpha() == False :
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", start_date) != True:
         print("FAILURE")
         # Checks if the date is valid
     end_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
