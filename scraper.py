@@ -67,6 +67,7 @@ def main() :
                 print(f"'{start_date}' is an invalid input. Try again...")
             else:
                 start_date = datetime.datetime(start_date[0:4], start_date[5:7], start_date[8:10], tzinfo=datetime.timezone.utc)
+                print(start_date, type(start_date))
                 start_date_valid = True
         except :
             AttributeError
