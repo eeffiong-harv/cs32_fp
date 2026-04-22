@@ -37,7 +37,7 @@ def main() :
                 link_valid == True
                 print(channel_list, "SUCCESS")
                 break
-            
+
         while len(channel_list) == 1:
             channel_input = input("What is the second channel you would like to scrape?")
             channel_list.append(channel_input)
@@ -54,7 +54,7 @@ def main() :
                 print("Must select 'y' or 'n'. Try again...")
 
         # Loop of inputting channel name, checking for validity, and prompting for more
-    client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash)
+    # client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
     start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
         # Checks if the date is valid
     end_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
