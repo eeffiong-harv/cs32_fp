@@ -14,7 +14,9 @@ def main() :
 
         channel_input = input("What channels would you like to scrape?")
         channel_list.append(channel_input)
-        if len(channel_input) > 2 :
+        print(channel_list)
+        print(len(channel_list))
+        if len(channel_list) > 2 :
             valid_user_input = False
             while valid_user_input == False :
                 end_channel_loop = input("Would you like to add a channel? (y/n)")
@@ -35,7 +37,7 @@ def main() :
         # Checks if the date is valid
     print(api_key, api_hash)
 
-    print(f'Great! Attempting to join the {channel_list} TG channel using Key:{api_key} and Hash:{api_hash}...')
+    print(f'Great! Attempting to join the {channel_list} TG channel(s) using Key: {api_key} and Hash: {api_hash}...')
         # Connect to telegram, report on success or failure
     # join()
 
