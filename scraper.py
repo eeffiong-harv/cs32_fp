@@ -10,3 +10,5 @@ def main() :
         # Checks if the hash is valid
     print(api_key, api_hash)
     return
+
+main()
