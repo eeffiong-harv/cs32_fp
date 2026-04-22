@@ -55,10 +55,7 @@ def main() :
                 print("Must select 'y' or 'n'. Try again...")
 
         # Loop of inputting channel name, checking for validity, and prompting for more
-    # client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
-    current_channel_num = 0
-    current_channel = channel_list[current_channel_num]
-    print(current_channel)
+
 
     start_date_valid = False
     while start_date_valid == False :
@@ -93,6 +90,12 @@ def main() :
 
     print(api_key, api_hash)
 
+    # client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
+    current_channel_num = 0
+    current_channel = channel_list[current_channel_num]
+    print(current_channel)
+    
+    print(f'Ready to scrape data from {current_channel})
     print(f'Great! Attempting to join the {channel_list} TG channel(s) using Key: {api_key} and Hash: {api_hash}...')
         # Connect to telegram, report on success or failure
     # join()
