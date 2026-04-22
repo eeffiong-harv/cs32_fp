@@ -80,6 +80,10 @@ def main() :
                 print(f"'{end_date}' is an invalid input. Try again...")
             else:
                 end_date = datetime.datetime(int(end_date[0:4]), int(end_date[5:7]), int(end_date[8:10]), tzinfo=datetime.timezone.utc)
+                if start_date > end_date :
+                    print("WARNING")
+                if start_date < end_date :
+                    print("WALL GOOD")
                 end_date_valid = True
         except :
             AttributeError
