@@ -8,7 +8,7 @@ def main() :
         # Checks if the key is valid
     api_hash = input("What is your API Hash?")
         # Checks if the hash is valid
-    channels = input("What channels would you like to scrape?")
+    channel_input = input("What channels would you like to scrape?")
         # Loop of inputting channel name, checking for validity, and prompting for more
     client = TelegramClient(f'{channels} Scrape', api_key, api_hash)
     start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
@@ -23,5 +23,7 @@ def main() :
 
     print(f'')
     return
+
+def join(client) :
 
 main()
