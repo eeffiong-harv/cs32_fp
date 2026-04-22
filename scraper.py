@@ -63,6 +63,8 @@ def main() :
     start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
     if re.fullmatch(r"\d{4}-\d{2}-\d{2}", start_date) != True:
         print("FAILURE")
+    else:
+        print("SUCCESS")
         # Checks if the date is valid
     end_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
         # Checks if the date is valid
