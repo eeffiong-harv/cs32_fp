@@ -95,7 +95,7 @@ def main() :
 
     print(f"Connecting to {current_channel}")
 
-    print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%Y-%m-%d')} and {end_date.strftime('%Y-%m-%d')}")
+    print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
 
     # print(api_key, api_hash)
 
