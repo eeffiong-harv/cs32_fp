@@ -11,8 +11,14 @@ def main() :
             print(f"'{api_key}' invalid. (Ensure you input an 8 digit key)")
         else :
             key_valid = True
+    hash_valid = False
+    while hash_valid == False :
+        api_hash = input("What is your API Hash?")
+        if len(api_hash) != 32 :
+            print(f"'{api_hash}' invalid. (Ensure you input an 32 characters long)")
+        else :
+            hash_valid = True
 
-    api_hash = input("What is your API Hash?")
         # Checks if the hash is valid
     channel_loop = True
     channel_list = []
