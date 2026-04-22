@@ -28,7 +28,7 @@ def main() :
     while channel_loop == True :
         while link_valid == False:
             channel_input = input("What channel you would like to scrape?")
-            print(channel_input[0:1])
+
             if channel_input[0:13] != "https://t.me/" :
                 print(f"'{channel_input}' is an invalid link. Try again... (ensure link begins with 'https://t.me/')")
                 link_valid = link_valid
