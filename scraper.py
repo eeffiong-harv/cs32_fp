@@ -4,8 +4,14 @@ import datetime
 import pandas
 
 def main() :
-    api_key = input("What is your API Key?")
-        # Checks if the key is valid
+    key_valid = False
+    while key_valid == False :
+        api_key = input("What is your API Key?")
+        if api_key.isdigit() != True or len(api_key) != 8 :
+            print(f"'{api_key}' invalid. (Ensure you input an 8 digit key)")
+        else :
+            key_valid = True
+
     api_hash = input("What is your API Hash?")
         # Checks if the hash is valid
     channel_loop = True
