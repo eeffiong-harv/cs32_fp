@@ -13,8 +13,15 @@ def main() :
     while channel_loop == True :
 
         channel_input = input("What channels would you like to scrape?")
-        if channel_input x :
-            end_channel_loop = input("Would you like to add a channel?")
+        channel_list.append(channel_input)
+        if len(channel_input) > 2 :
+            end_channel_loop = input("Would you like to add a channel? (y/n)")
+            if end_channel_loop == "y" :
+                channel_loop = channel_loop
+            elif end_channel_loop == "n" :
+                channel_loop = False
+            else:
+                print("Must select")
 
         # Loop of inputting channel name, checking for validity, and prompting for more
     client = TelegramClient(f'{channels} Scrape', api_key, api_hash)
