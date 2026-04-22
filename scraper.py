@@ -76,7 +76,7 @@ def main() :
     while end_date_valid == False :
         end_date = input("What is the end date of your scrape? (Format: YYYY-MM-DD)")
         try :
-            if re.fullmatch(r"[0-9]{4}-[0-9]{1,2})", end_date).span() != (0, 10) :
+            if re.fullmatch(r"\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])", end_date).span() != (0, 10) :
                 print(f"'{end_date}' is an invalid input. Try again...")
             else:
                 end_date = datetime.datetime(int(end_date[0:4]), int(end_date[5:7]), int(end_date[8:10]), tzinfo=datetime.timezone.utc)
