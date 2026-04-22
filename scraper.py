@@ -12,11 +12,12 @@ def main() :
     channel_list = []
     while channel_loop == True :
 
-        channel_input = input("What channels would you like to scrape?")
+        channel_input = input("What is the first channel you would like to scrape?")
         channel_list.append(channel_input)
-        print(channel_list)
+        channel_input = input("What is the second channel you would like to scrape?")
+        channel_list.append(channel_input)
         print(len(channel_list))
-        if len(channel_list) > 2 :
+        if len(channel_list) > 1 :
             valid_user_input = False
             while valid_user_input == False :
                 end_channel_loop = input("Would you like to add a channel? (y/n)")
