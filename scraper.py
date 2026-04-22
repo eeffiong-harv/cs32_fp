@@ -15,23 +15,27 @@ def main() :
         channel_input = input("What channels would you like to scrape?")
         channel_list.append(channel_input)
         if len(channel_input) > 2 :
-            end_channel_loop = input("Would you like to add a channel? (y/n)")
-            if end_channel_loop == "y" :
-                channel_loop = channel_loop
-            elif end_channel_loop == "n" :
-                channel_loop = False
-            else:
-                print("Must select")
+            valid_user_input = False
+            while valid_user_input == False :
+                end_channel_loop = input("Would you like to add a channel? (y/n)")
+                if end_channel_loop == "y" :
+                    channel_loop = channel_loop
+                    valid_user_input = True
+                elif end_channel_loop == "n" :
+                    channel_loop = False
+                    valid_user_input = True
+                else:
+                    print("Must select 'y' or 'n'. Try again...")
 
         # Loop of inputting channel name, checking for validity, and prompting for more
-    client = TelegramClient(f'{channels} Scrape', api_key, api_hash)
+    client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash)
     start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
         # Checks if the date is valid
     end_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
         # Checks if the date is valid
     print(api_key, api_hash)
 
-    print(f'Great! Attempting to join the {channels} TG channel using Key:{api_key} and Hash:{api_hash}...')
+    print(f'Great! Attempting to join the {channel_list} TG channel using Key:{api_key} and Hash:{api_hash}...')
         # Connect to telegram, report on success or failure
     # join()
 
@@ -39,5 +43,5 @@ def main() :
     return
 
 def join(client) :
-
+    return
 main()
