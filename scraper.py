@@ -71,8 +71,8 @@ def main() :
                 start_date_valid = True
         except :
             AttributeError
+            print(AttributeError)
             print(f"'{start_date}' is an invalid input. Try again...")
-
 
     end_date_valid = False
     while end_date_valid == False :
