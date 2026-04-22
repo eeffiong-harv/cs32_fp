@@ -63,8 +63,7 @@ def main() :
     while start_date_valid == False :
         start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
         try :
-            print(re.fullmatch(r"\d{4}-([1-9]|1[0-2])-([1-9]|[12][0-9]|3[01])", start_date))
-            if re.fullmatch(r"\d{4}-[1-9]|1[0-2]-[1-9]|[12][0-9]|3[01]", start_date).span() != (0, 10) :
+            if re.fullmatch(r"\d{4}-([1-9]|1[0-2])-([1-9]|[12][0-9]|3[01])", start_date).span() != (0, 10) :
                 print(f"'{start_date}' is an invalid input. Try again...")
             else:
                 start_date_valid = True
@@ -72,8 +71,19 @@ def main() :
             AttributeError
             print(f"'{start_date}' is an invalid input. Try again...")
 
-    end_date = input("What is the end date of your scrape? (Format: YYYY-MM-DD)")
-        # Checks if the date is valid
+    end_date_valid = False
+    while end_date_valid == False :
+        end_date = input("What is the end date of your scrape? (Format: YYYY-MM-DD)")
+        try :
+            if re.fullmatch(r"\d{4}-([1-9]|1[0-2])-([1-9]|[12][0-9]|3[01])", end_date).span() != (0, 10) :
+                print(f"'{end_date}' is an invalid input. Try again...")
+            else:
+                end_date_valid = True
+        except :
+            AttributeError
+            print(f"'{end_date}' is an invalid input. Try again...")
+
+
     print(api_key, api_hash)
 
     print(f'Great! Attempting to join the {channel_list} TG channel(s) using Key: {api_key} and Hash: {api_hash}...')
