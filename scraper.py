@@ -31,15 +31,15 @@ def main() :
         while len(channel_list) == 1:
             channel_input = input("What is the second channel you would like to scrape?")
             channel_list.append(channel_input)
-        valid_user_input = False
-        while valid_user_input == False :
+        user_input_valid = False
+        while user_input_valid == False :
             end_channel_loop = input("Would you like to add a channel? (y/n)")
             if end_channel_loop == "y" :
                 channel_loop = channel_loop
-                valid_user_input = True
+                user_input_valid = True
             elif end_channel_loop == "n" :
                 channel_loop = False
-                valid_user_input = True
+                user_input_valid = True
             else:
                 print("Must select 'y' or 'n'. Try again...")
 
