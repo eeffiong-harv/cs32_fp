@@ -35,6 +35,7 @@ def main() :
             else:
                 channel_list.append(channel_input)
                 link_valid == True
+        print(len(channel_list))
         while len(channel_list) == 1:
             channel_input = input("What is the second channel you would like to scrape?")
             channel_list.append(channel_input)
