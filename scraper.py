@@ -55,7 +55,13 @@ def main() :
 
         # Loop of inputting channel name, checking for validity, and prompting for more
     # client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
+    current_channel_num = 0
+    current_channel = channel_list[current_channel_num]
+    print(current_channel)
+
     start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
+    if start_date.find('-') == -1 or start_date.isalpha() == False :
+        print("FAILURE")
         # Checks if the date is valid
     end_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
         # Checks if the date is valid
