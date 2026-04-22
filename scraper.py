@@ -66,12 +66,10 @@ def main() :
             if re.fullmatch(r"\d{4}-([1-9]|1[0-2])-([1-9]|[12][0-9]|3[01])", start_date).span() != (0, 10) :
                 print(f"'{start_date}' is an invalid input. Try again...")
             else:
-                start_date = datetime.datetime(start_date[0:4], start_date[5:7], start_date[8:10], tzinfo=datetime.timezone.utc)
-                print(start_date, type(start_date))
+                start_date = datetime.datetime(int(start_date[0:4]), int(start_date[5:7]), int(start_date[8:10]), tzinfo=datetime.timezone.utc)
                 start_date_valid = True
         except :
             AttributeError
-            print(AttributeError)
             print(f"'{start_date}' is an invalid input. Try again...")
 
     end_date_valid = False
@@ -81,6 +79,7 @@ def main() :
             if re.fullmatch(r"\d{4}-([1-9]|1[0-2])-([1-9]|[12][0-9]|3[01])", end_date).span() != (0, 10) :
                 print(f"'{end_date}' is an invalid input. Try again...")
             else:
+                end_date = datetime.datetime(int(end_date[0:4]), int(end_date[5:7]), int(end_date[8:10]), tzinfo=datetime.timezone.utc)
                 end_date_valid = True
         except :
             AttributeError
