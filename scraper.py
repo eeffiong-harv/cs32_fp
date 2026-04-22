@@ -60,6 +60,8 @@ def main() :
     # print(current_channel)
 
     start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
+    if start_date.fullmatch(r"[0-9]-") != True:
+        print("FAILURE")
     if start_date.find('-') == -1 or start_date.isalpha() == False :
         print("FAILURE")
         # Checks if the date is valid
