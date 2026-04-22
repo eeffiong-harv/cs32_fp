@@ -61,6 +61,7 @@ def main() :
     # print(current_channel)
 
     start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
+    print(re.fullmatch(r"\d{4}-\d{2}-\d{2}", start_date))
     if re.fullmatch(r"\d{4}-\d{2}-\d{2}", start_date) != True:
         print("FAILURE")
     else:
