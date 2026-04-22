@@ -3,6 +3,7 @@
 Libraries used
 ---
 Telethon : telegram api to grab information from telgram through individual api
+Pandas : Saving and organizing information into a csv
 
 
 
