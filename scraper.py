@@ -4,6 +4,7 @@ import datetime
 import pandas
 
 def main() :
+
     key_valid = False
     while key_valid == False :
         api_key = input("What is your API Key?")
@@ -11,6 +12,7 @@ def main() :
             print(f"'{api_key}' invalid. (Ensure you input an 8 digit key)")
         else :
             key_valid = True
+
     hash_valid = False
     while hash_valid == False :
         api_hash = input("What is your API Hash?")
@@ -19,9 +21,9 @@ def main() :
         else :
             hash_valid = True
 
-        # Checks if the hash is valid
     channel_loop = True
     channel_list = []
+
     while channel_loop == True :
 
         channel_input = input("What channel you would like to scrape?")
