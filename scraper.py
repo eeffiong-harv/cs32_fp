@@ -94,8 +94,9 @@ def main() :
     client = TelegramClient('session_name', api_key, api_hash) # NEED TO FIX FIRST VALUE
 
     print(f"Connecting to {current_channel}")
-
-    print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
+    connection = join()
+    print(connection)
+    # print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
 
     # print(api_key, api_hash)
 
