@@ -111,6 +111,7 @@ def main() :
     # print(f'')
     return
 
-def join(client) :
+def join(client, current_channel) :
+
     return
 main()
