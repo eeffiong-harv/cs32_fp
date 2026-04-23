@@ -112,6 +112,7 @@ def main() :
     return
 
 def join(client, current_channel) :
+    client(JoinChannelRequest(current_channel))
 
     return
 main()
