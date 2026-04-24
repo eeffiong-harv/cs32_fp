@@ -6,13 +6,18 @@ import pandas
 import re
 
 async def join(client, current_channel) :
-
-    await client.start() #logging in and connecting to telegram client
     try:
-        await client(JoinChannelRequest(current_channel))
+        print("Connecting to client...")
+        await client.start() #logging in and connecting to telegram client
+        print("Connection successful!")
+        print(f"Attempting to join {current_channel}...")
+        await client(JoinChannelRequest(current_channel)) # joining specified channel
+        print(f"Successfully joined {current_channel}!")
     except:
+        print(f"Failed to join {current_channel}.")
+        return
 
-        return "hello"
+
 
 async def main() :
     api_key = '14913236'
