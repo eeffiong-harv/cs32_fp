@@ -14,3 +14,15 @@ Pandas : Saving and organizing information into a csv
     - grab id, datetime, message, views
     - save to master csv
 
+### 04/24/26
+
+Structure of the scraping script
+- Query user for api key, api hash, channels, and start and end dates.
+- Connect to client
+- For each channel in the list:
+    - Connect to channel
+    - Add messages + metadata to list
+    - convert list to dataframe
+    - export dataframe
+
+Using libraries: re, asyncio, datetime

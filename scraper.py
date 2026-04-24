@@ -1,9 +1,11 @@
-from telethon import TelegramClient
+from telethon import TelegramClient # Connecting to & Interacting with Telgram API
 from telethon.tl.functions.channels import JoinChannelRequest
-import datetime
+import datetime # For using date objects (how info is stored in telegram)
+import pandas # For creating and exporting dataframes
+import re # For using regex (validating user entries)
 import asyncio
-import pandas
-import re
+
+
 
 auto = True
 
