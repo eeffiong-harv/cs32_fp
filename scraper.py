@@ -4,12 +4,12 @@ import datetime
 import pandas
 import re
 
-def join(client, current_channel) :
+async def join(client, current_channel) :
     a = client(JoinChannelRequest(current_channel))
 
     return a
 
-def main() :
+async def main() :
 
     key_valid = False
     while key_valid == False :
