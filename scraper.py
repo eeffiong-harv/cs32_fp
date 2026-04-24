@@ -65,11 +65,17 @@ async def setup() :
             else:
                 channel_list.append(channel_input)
                 link_valid = True
-                print(channel_list, "SUCCESS")
                 break
 
         while len(channel_list) == 1:
             channel_input = input("What is the second channel you would like to scrape?")
+            if channel_input[0:13] != "https://t.me/" :
+                print(f"'{channel_input}' is an invalid link. Try again... (ensure link begins with 'https://t.me/')")
+                link_valid = link_valid
+            else:
+                channel_list.append(channel_input)
+                link_valid = True
+                break
             channel_list.append(channel_input)
         user_input_valid = False
         while user_input_valid == False :
