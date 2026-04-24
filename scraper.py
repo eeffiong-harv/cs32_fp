@@ -20,6 +20,7 @@ async def join(client, current_channel) :
         print(f"Failed to join {current_channel}.")
         return
 
+# Function for Scraping telegram channels and saving as .csv
 async def scrape(client, current_channel, start_date, end_date, limit = 10) :
     message_data = []
     message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
@@ -36,8 +37,8 @@ async def scrape(client, current_channel, start_date, end_date, limit = 10) :
 
     return message_df
 
+# Function for retrieving user info
 async def setup() :
-
     key_valid = False
     while key_valid == False :
         api_key = input("What is your API Key? ")
