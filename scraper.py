@@ -6,8 +6,8 @@ import re # For using regex (validating user entries)
 import asyncio # For running asynchronous code (Telethon library employs this)
 
 
-preload = True # Set to 'True' to run with preloaded user information and channel list
-messagelimit = 20 # Set to an integer or None
+preload = False # Set to 'True' to run with preloaded user information and channel list
+messagelimit = 30 # Set to an integer or None
 
 # Function to Join Telegram Channel
 async def join(client, current_channel) :
@@ -23,7 +23,7 @@ async def join(client, current_channel) :
         return
 
 # Function for Scraping telegram channels and saving as .csv
-async def scrape(client, current_channel, start_date, end_date, limit = 10) :
+async def scrape(client, current_channel, start_date, end_date, limit = messagelimit) :
 
     print(f"Attempting to scrape {current_channel[13:]} posts from {start_date.strftime('%b %d, %Y')}-{end_date.strftime('%b %d, %Y')}...")
 
@@ -40,7 +40,7 @@ async def scrape(client, current_channel, start_date, end_date, limit = 10) :
     if message_data :
         message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
         message_df.to_csv(f'{current_channel[13:]}_messages.csv', encoding = 'utf-8')
-        print(f"Finished scraping {current_channel}. {len(message_data)}Messages saved to {current_channel[13:]}_messages.csv.")
+        print(f"Finished scraping {current_channel}. {len(message_data)} Messages saved to {current_channel[13:]}_messages.csv.")
     else :
         print(f"No {current_channel} posts found during specified period.")
 
@@ -143,7 +143,7 @@ async def setup() :
 async def main() :
     # Enter user info + parameters here to skip q&a phase
     if preload == True:
-        print("Welcome to NewScraper! Running with preloaded user info & channel list...\n")
+        print("Welcome to NewScraper! Running with preloaded user info & channel list...")
         api_key = '14913236'
         api_hash = 'b1bdcf76b1a430359e766da11638714e'
         channel_list = ['https://t.me/nytimes','https://t.me/cnn_world_news']
