@@ -48,6 +48,8 @@ async def scrape(client, current_channel, start_date, end_date, limit = messagel
 
 # Function for retrieving user info
 async def setup() :
+
+    # Retrieving user API Key
     key_valid = False
     while key_valid == False :
         api_key = input("What is your API Key? ")
@@ -55,7 +57,7 @@ async def setup() :
             print(f"'{api_key}' invalid. (Ensure you input an 8 digit key)")
         else :
             key_valid = True
-
+    # Retrieving user API Hash
     hash_valid = False
     while hash_valid == False :
         api_hash = input("What is your API Hash? ")
@@ -64,11 +66,14 @@ async def setup() :
         else :
             hash_valid = True
 
+    # Retrieving channel list
     channel_loop = True
     channel_list = []
     link_valid = False
 
     while channel_loop == True :
+
+        # First and Third+ Channels
         while link_valid == False:
             channel_input = input("What channel you would like to scrape? ")
 
@@ -81,6 +86,7 @@ async def setup() :
                 print(f"{channel_input[13:]} added to channel list.")
                 break
 
+        # Second Channel
         while len(channel_list) == 1:
             channel_input = input("What is the second channel you would like to scrape? ")
             if channel_input[0:13] != "https://t.me/" :
@@ -92,6 +98,7 @@ async def setup() :
                 print(f"\n{channel_input[13:]} added to channel list.")
                 break
 
+        # Optional >3 Channels
         user_input_valid = False
         while user_input_valid == False :
             end_channel_loop = input(f"\nCurrent Channel List:\n{channel_list}\n\nWould you like to add a channel? (y/n) ")
@@ -105,6 +112,7 @@ async def setup() :
             else:
                 print("Must select 'y' or 'n'. Try again...")
 
+    # Retrieving start date
     start_date_valid = False
     while start_date_valid == False :
         start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD) ")
@@ -115,9 +123,9 @@ async def setup() :
                 start_date = datetime.datetime(int(start_date[0:4]), int(start_date[5:7]), int(start_date[8:10]), tzinfo=datetime.timezone.utc)
                 start_date_valid = True
         except :
-            AttributeError
             print(f"'{start_date}' is an invalid input. Try again...")
 
+    # Retrieving end date
     end_date_valid = False
     while end_date_valid == False :
         end_date = input("What is the end date of your scrape? (Format: YYYY-MM-DD) ")
@@ -132,7 +140,6 @@ async def setup() :
                 else :
                     end_date_valid = True
         except :
-            AttributeError
             print(f"'{end_date}' is an invalid input. Try again...")
 
     print(f"Great! Let's start scraping {len(channel_list)} channels")
