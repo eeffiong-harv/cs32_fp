@@ -17,7 +17,8 @@ async def join(client, current_channel) :
         print(f"Failed to join {current_channel}.")
         return
 
-async def scrape(client, current_channel,) :
+async def scrape(client, current_channel, limit = 10) :
+    async for message in client.iter_messages(current_channel, limit, offset_date = start_date
 
 
 
