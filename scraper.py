@@ -6,7 +6,7 @@ import re # For using regex (validating user entries)
 import asyncio # For running asynchronous code (Telethon library employs this)
 
 
-preload = True # Run with preloaded user information and channel list
+preload = False # Run with preloaded user information and channel list
 messagelimit = 20 # Set to an integer or None
 
 # Function to Join Telegram Channel
@@ -146,12 +146,12 @@ async def main() :
     for items in channel_list :
         current_channel = channel_list[current_channel_num]
         await join(client, current_channel)
-        print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
+        print(f"Attempting to scrape {current_channel[13:]} posts from {start_date.strftime('%b %d, %Y')}-{end_date.strftime('%b %d, %Y')}...")
         scraper = await scrape(client, current_channel, start_date, end_date)
         # print(scraper)
         print(f"Finished scraping {current_channel}. Messages saved to {current_channel[13:]}_messages.csv.")
         current_channel_num += 1
-    print(f"Completed scraping messages from all channels!")
+    print(f"\nCompleted scraping messages from all channels!")
     return
 
 if __name__ == "__main__":
