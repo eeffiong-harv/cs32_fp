@@ -99,7 +99,7 @@ async def main() :
     client = TelegramClient('session_name', api_key, api_hash) # NEED TO FIX FIRST VALUE
 
     print(f"Connecting to {current_channel}")
-    connection = join(client, current_channel)
+    connection =  await join(client, current_channel)
     print(connection)
     # print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
 
