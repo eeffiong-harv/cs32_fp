@@ -4,10 +4,16 @@ import datetime
 import asyncio
 import pandas
 import re
-start_date = datetime.datetime(2026, 2, 1, tzinfo=datetime.timezone.utc)
-end_date = datetime.datetime(2026, 4, 1, tzinfo=datetime.timezone.utc)
 
-message_data = []
+auto = True
+
+if auto == True:
+    api_key = '14913236'
+    api_hash = 'b1bdcf76b1a430359e766da11638714e'
+    current_channel = 'https://t.me/nytimes'
+    start_date = datetime.datetime(2026, 2, 1, tzinfo=datetime.timezone.utc)
+    end_date = datetime.datetime(2026, 4, 1, tzinfo=datetime.timezone.utc)
+else:
 async def join(client, current_channel) :
     try:
         print("Connecting to client...")
@@ -21,6 +27,7 @@ async def join(client, current_channel) :
         return
 
 async def scrape(client, current_channel, limit = 20) :
+    message_data = []
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
         if message.text:
             # print(message.text)
@@ -32,9 +39,7 @@ async def scrape(client, current_channel, limit = 20) :
     return message_df
 
 async def main() :
-    api_key = '14913236'
-    api_hash = 'b1bdcf76b1a430359e766da11638714e'
-    current_channel = 'https://t.me/nytimes'
+
     # key_valid = False
     # while key_valid == False :
     #     api_key = input("What is your API Key?")
