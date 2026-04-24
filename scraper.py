@@ -120,27 +120,16 @@ async def main() :
 
     # current_channel_num = 0
     # current_channel = channel_list[current_channel_num]
-    client = TelegramClient('session_name', api_key, api_hash) # NEED TO FIX FIRST VALUE
+    client = TelegramClient('session_name', api_key, api_hash) # Each time session name is updated, phone number will need to be re-entered.
 
-    print(f"Connecting to {current_channel}")
     connection =  await join(client, current_channel)
     print(connection)
-    scraper = await scrape(client, current_channel, 10)
+
+    scraper = await scrape(client, current_channel)
     print(scraper)
+    print(f"Finished scraping {current_channel}. Messages saved to {current_channel[13:]}_messages.csv.")
     # print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
 
-    # print(api_key, api_hash)
-
-    # client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
-
-    # print(current_channel)
-
-    # print(f'Ready to scrape data from {current_channel}')
-    # print(f'Great! Attempting to join the {channel_list} TG channel(s) using Key: {api_key} and Hash: {api_hash}...')
-        # Connect to telegram, report on success or failure
-    # join()
-
-    # print(f'')
     return
 
 if __name__ == "__main__":
