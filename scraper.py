@@ -85,6 +85,7 @@ async def setup() :
             if end_channel_loop == "y" :
                 channel_loop = channel_loop
                 user_input_valid = True
+                link_valid = False
             elif end_channel_loop == "n" :
                 channel_loop = False
                 user_input_valid = True
