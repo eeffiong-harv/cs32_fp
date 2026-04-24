@@ -5,6 +5,7 @@ import asyncio
 import pandas
 import re
 
+auto = False
 
 
 
@@ -20,7 +21,7 @@ async def join(client, current_channel) :
         print(f"Failed to join {current_channel}.")
         return
 
-async def scrape(client, current_channel, limit = 20, start_date) :
+async def scrape(client, current_channel, start_date, end_date, limit = 10) :
     message_data = []
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
         if message.text:
@@ -119,7 +120,6 @@ async def setup() :
     return api_key, api_hash, channel_list, start_date, end_date
 
 async def main() :
-    auto = True
     if auto == True:
         api_key = '14913236'
         api_hash = 'b1bdcf76b1a430359e766da11638714e'
@@ -136,7 +136,7 @@ async def main() :
     connection =  await join(client, current_channel)
     print(connection)
 
-    scraper = await scrape(client, current_channel, start_date)
+    scraper = await scrape(client, current_channel, start_date, end_date)
     print(scraper)
     print(f"Finished scraping {current_channel}. Messages saved to {current_channel[13:]}_messages.csv.")
     # print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
