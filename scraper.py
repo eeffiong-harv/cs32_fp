@@ -57,7 +57,7 @@ async def setup() :
 
     while channel_loop == True :
         while link_valid == False:
-            channel_input = input("What channel you would like to scrape?")
+            channel_input = input("What channel you would like to scrape? ")
 
             if channel_input[0:13] != "https://t.me/" :
                 print(f"'{channel_input}' is an invalid link. Try again... (ensure link begins with 'https://t.me/')")
@@ -65,21 +65,23 @@ async def setup() :
             else:
                 channel_list.append(channel_input)
                 link_valid = True
+                print(channel_list, "SUCCESS")
                 break
 
         while len(channel_list) == 1:
-            channel_input = input("What is the second channel you would like to scrape?")
+            channel_input = input("What is the second channel you would like to scrape? ")
             if channel_input[0:13] != "https://t.me/" :
                 print(f"'{channel_input}' is an invalid link. Try again... (ensure link begins with 'https://t.me/')")
                 link_valid = link_valid
             else:
                 channel_list.append(channel_input)
                 link_valid = True
+                print(channel_list, "SUCCESS")
                 break
-            channel_list.append(channel_input)
+
         user_input_valid = False
         while user_input_valid == False :
-            end_channel_loop = input("Would you like to add a channel? (y/n)")
+            end_channel_loop = input("Would you like to add a channel? (y/n) ")
             if end_channel_loop == "y" :
                 channel_loop = channel_loop
                 user_input_valid = True
@@ -88,11 +90,10 @@ async def setup() :
                 user_input_valid = True
             else:
                 print("Must select 'y' or 'n'. Try again...")
-        # Loop of inputting channel name, checking for validity, and prompting for more
 
     start_date_valid = False
     while start_date_valid == False :
-        start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD)")
+        start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD) ")
         try :
             if re.fullmatch(r"\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])", start_date).span() != (0, 10) :
                 print(f"'{start_date}' is an invalid input. Try again...")
@@ -105,7 +106,7 @@ async def setup() :
 
     end_date_valid = False
     while end_date_valid == False :
-        end_date = input("What is the end date of your scrape? (Format: YYYY-MM-DD)")
+        end_date = input("What is the end date of your scrape? (Format: YYYY-MM-DD) ")
         try :
             if re.fullmatch(r"\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])", end_date).span() != (0, 10) :
                 print(f"'{end_date}' is an invalid input. Try again...")
