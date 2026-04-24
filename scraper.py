@@ -28,12 +28,13 @@ async def scrape(client, current_channel, start_date, end_date, limit = 10) :
     message_data = [] # list to collect messages + metadata
     message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel']) # df w/ columns for messages + metadata
 
+    # Adding messages containing text to the list
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
         if message.text:
             message_data.append([message.id, message.date, message.text, message.views, f"{current_channel[13:]}"])
         if message.date > end_date :
             break
-
+    # If there were posts in the specified time range, add them to dataset
     if message_data :
         message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
         message_df.to_csv(f'{current_channel[13:]}_messages.csv', encoding = 'utf-8')
