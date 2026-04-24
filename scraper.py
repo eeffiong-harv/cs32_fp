@@ -5,6 +5,8 @@ import asyncio
 import pandas
 import re
 start_date = datetime.datetime(2026, 2, 1, tzinfo=datetime.timezone.utc)
+end_date = datetime.datetime(2026, 4, 1, tzinfo=datetime.timezone.utc)
+
 message_data = []
 async def join(client, current_channel) :
     try:
@@ -22,8 +24,11 @@ async def scrape(client, current_channel, limit = 20) :
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
         if message.text:
             # print(message.text)
-            message_data.append([message.id, message.date, message.text, message.views, f"{current_channel}"])
+            message_data.append([message.id, message.date, message.text, message.views, f"{current_channel[13:]}"])
         message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
+        message_df.to_csv(f'{current_channel[13:]}_messages.csv', encoding = 'utf-8')
+        if message.date > end_date :
+            break
     return message_df
 
 async def main() :
