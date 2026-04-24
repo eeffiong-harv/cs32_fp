@@ -20,10 +20,13 @@ async def join(client, current_channel) :
 
 async def scrape(client, current_channel, limit = 10,) :
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
-        print(message)
-        print("hello")
+        if message.text:
+            print(message)
+            print("hello")
+        else:
+            print("warning!")
 
-        return "hello"
+        return
 
 async def main() :
     api_key = '14913236'
@@ -119,6 +122,7 @@ async def main() :
     print(f"Connecting to {current_channel}")
     connection =  await join(client, current_channel)
     print(connection)
+    print("hello??")
     scraper = await scrape(client, current_channel, 10)
     print(scraper)
     # print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
