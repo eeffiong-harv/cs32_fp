@@ -126,9 +126,11 @@ async def main() :
         end_date = datetime.datetime(2026, 4, 1, tzinfo=datetime.timezone.utc)
     else:
         api_key, api_hash, channel_list, start_date, end_date = await setup()
-    # current_channel_num = 0
-    # current_channel = channel_list[current_channel_num]
+
     client = TelegramClient('session_name', api_key, api_hash) # Each time session name is updated, phone number will need to be re-entered.
+
+    current_channel_num = 0
+    current_channel = channel_list[current_channel_num]
 
     connection =  await join(client, current_channel)
     print(connection)
