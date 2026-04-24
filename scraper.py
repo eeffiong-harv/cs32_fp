@@ -5,14 +5,14 @@ import pandas # For creating and exporting dataframes
 import re # For using regex (validating user entries)
 import asyncio # For running asynchronous code (Telethon library employs this)
 
-preload = True # Run with preloaded user information and channel list
-messagelimit = True # Limit message load (default = 20)
 
+preload = True # Run with preloaded user information and channel list
+messagelimit = 20 # Set to an integer or None
+
+# Function to Join Telegram Channel
 async def join(client, current_channel) :
     try:
-        print("Connecting to client...")
         await client.start() #logging in and connecting to telegram client
-        print("Connection successful!")
         print(f"Attempting to join {current_channel}...")
         await client(JoinChannelRequest(current_channel)) # joining specified channel
         print(f"Successfully joined {current_channel}!")
