@@ -5,9 +5,9 @@ import pandas
 import re
 
 async def join(client, current_channel) :
-    a = client(JoinChannelRequest(current_channel))
+    await client(JoinChannelRequest(current_channel))
 
-    return a
+    return
 
 async def main() :
 
