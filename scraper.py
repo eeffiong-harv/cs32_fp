@@ -4,6 +4,7 @@ import datetime
 import asyncio
 import pandas
 import re
+start_date = datetime.datetime(2026, 4, 1, tzinfo=datetime.timezone.utc)
 
 async def join(client, current_channel) :
     try:
@@ -17,12 +18,12 @@ async def join(client, current_channel) :
         print(f"Failed to join {current_channel}.")
         return
 
-async def scrape(client, current_channel, limit = 10) :
-    async for message in client.iter_messages(current_channel, limit, offset_date = start_date
+async def scrape(client, current_channel, limit = 10,) :
+    async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
+        print(message)
+        print("hello")
 
-
-
-    return
+        return "hello"
 
 async def main() :
     api_key = '14913236'
@@ -118,6 +119,8 @@ async def main() :
     print(f"Connecting to {current_channel}")
     connection =  await join(client, current_channel)
     print(connection)
+    scraper = await scrape(client, current_channel, 10)
+    print(scraper)
     # print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
 
     # print(api_key, api_hash)
