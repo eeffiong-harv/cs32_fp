@@ -82,9 +82,7 @@ async def setup() :
                 user_input_valid = True
             else:
                 print("Must select 'y' or 'n'. Try again...")
-
         # Loop of inputting channel name, checking for validity, and prompting for more
-
 
     start_date_valid = False
     while start_date_valid == False :
@@ -127,8 +125,8 @@ async def main() :
         start_date = datetime.datetime(2026, 2, 1, tzinfo=datetime.timezone.utc)
         end_date = datetime.datetime(2026, 4, 1, tzinfo=datetime.timezone.utc)
     else:
-        await setup()
-
+        a = await setup()
+        print(a)
     # current_channel_num = 0
     # current_channel = channel_list[current_channel_num]
     client = TelegramClient('session_name', api_key, api_hash) # Each time session name is updated, phone number will need to be re-entered.
