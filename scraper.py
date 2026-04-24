@@ -3,13 +3,10 @@ from telethon.tl.functions.channels import JoinChannelRequest
 import datetime # For using date objects (how info is stored in telegram)
 import pandas # For creating and exporting dataframes
 import re # For using regex (validating user entries)
-import asyncio
+import asyncio # For running asynchronous code (Telethon library employs this)
 
-
-
-auto = True
-
-
+preload = True # Run with preloaded user information and channel list
+messagelimit = True # Limit message load (default = 20)
 
 async def join(client, current_channel) :
     try:
@@ -132,7 +129,7 @@ async def setup() :
     return api_key, api_hash, channel_list, start_date, end_date
 
 async def main() :
-    if auto == True:
+    if preload == True:
         api_key = ''
         api_hash = ''
         channel_list = ['https://t.me/nytimes','https://t.me/cnn_world_news']
