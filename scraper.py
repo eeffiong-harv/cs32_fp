@@ -26,7 +26,7 @@ async def scrape(client, current_channel, start_date, end_date, limit = 10) :
     # message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
         if message.text:
-            print(message.text)
+            # print(message.text)
             message_data.append([message.id, message.date, message.text, message.views, f"{current_channel[13:]}"])
         if message.date > end_date :
             break
@@ -75,17 +75,17 @@ async def setup() :
         while len(channel_list) == 1:
             channel_input = input("What is the second channel you would like to scrape? ")
             if channel_input[0:13] != "https://t.me/" :
-                print(f"'{channel_input}' is an invalid link. Try again... (ensure link begins with 'https://t.me/')")
+                print(f"'\n{channel_input}' is an invalid link. Try again... (ensure link begins with 'https://t.me/')")
                 link_valid = link_valid
             else:
                 channel_list.append(channel_input)
                 link_valid = True
-                print(f"{channel_input[13:]} added to channel list.")
+                print(f"\n{channel_input[13:]} added to channel list.")
                 break
 
         user_input_valid = False
         while user_input_valid == False :
-            end_channel_loop = input(f"Current Channel List:\n{channel_list}\nWould you like to add a channel? (y/n) ")
+            end_channel_loop = input(f"\nCurrent Channel List:\n{channel_list}\n\nWould you like to add a channel? (y/n) ")
             if end_channel_loop == "y" :
                 channel_loop = channel_loop
                 user_input_valid = True
