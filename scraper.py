@@ -1,6 +1,7 @@
 from telethon import TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest
 import datetime
+import asyncio
 import pandas
 import re
 
@@ -40,7 +41,7 @@ async def main() :
                 link_valid = link_valid
             else:
                 channel_list.append(channel_input)
-                link_valid == True
+                link_valid = True
                 print(channel_list, "SUCCESS")
                 break
 
