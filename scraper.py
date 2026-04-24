@@ -4,8 +4,8 @@ import datetime
 import asyncio
 import pandas
 import re
-start_date = datetime.datetime(2020, 4, 1, tzinfo=datetime.timezone.utc)
-
+start_date = datetime.datetime(2026, 2, 1, tzinfo=datetime.timezone.utc)
+message_data = []
 async def join(client, current_channel) :
     try:
         print("Connecting to client...")
@@ -20,13 +20,10 @@ async def join(client, current_channel) :
 
 async def scrape(client, current_channel, limit = 20) :
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
-        if message:
-            print(message)
-            print("hello")
-        else:
-            print("warning!")
-
-        return
+        if message.text:
+            print(message.text)
+            message_data.append[]
+    return
 
 async def main() :
     api_key = '14913236'
