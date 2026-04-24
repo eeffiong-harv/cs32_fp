@@ -103,7 +103,7 @@ def main() :
     # client = TelegramClient(f'{channel_list} Scrape', api_key, api_hash) # NEED TO FIX FIRST VALUE
 
     # print(current_channel)
-
+n
     # print(f'Ready to scrape data from {current_channel}')
     # print(f'Great! Attempting to join the {channel_list} TG channel(s) using Key: {api_key} and Hash: {api_hash}...')
         # Connect to telegram, report on success or failure
