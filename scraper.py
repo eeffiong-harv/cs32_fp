@@ -5,7 +5,7 @@ import asyncio
 import pandas
 import re
 
-auto = True
+
 
 
 async def join(client, current_channel) :
@@ -119,6 +119,7 @@ async def setup() :
     return api_key, api_hash, channel_list, start_date, end_date
 
 async def main() :
+    auto = True
     if auto == True:
         api_key = '14913236'
         api_hash = 'b1bdcf76b1a430359e766da11638714e'
