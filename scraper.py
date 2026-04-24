@@ -15,7 +15,7 @@ async def join(client, current_channel) :
         await client.start() #logging in and connecting to telegram client
         print(f"Attempting to join {current_channel}...")
         await client(JoinChannelRequest(current_channel)) # joining specified channel
-        print(f"Successfully joined {current_channel}!")
+        print(f"Successfully joined {current_channel}!\n")
     except:
         print(f"Failed to join {current_channel}.")
         return
@@ -130,12 +130,14 @@ async def setup() :
 
 async def main() :
     if preload == True:
-        api_key = ''
-        api_hash = ''
+        print("Welcome to NewScraper! Running with preloaded user info & channel list...\n")
+        api_key = '14913236'
+        api_hash = 'b1bdcf76b1a430359e766da11638714e'
         channel_list = ['https://t.me/nytimes','https://t.me/cnn_world_news']
         start_date = datetime.datetime(2024, 1, 1, tzinfo=datetime.timezone.utc)
         end_date = datetime.datetime(2025, 1, 31, tzinfo=datetime.timezone.utc)
     else:
+        print("Welcome to NewScraper!\n")
         api_key, api_hash, channel_list, start_date, end_date = await setup()
 
     client = TelegramClient('session_name', api_key, api_hash) # Each time session name is updated, phone number will need to be re-entered.
