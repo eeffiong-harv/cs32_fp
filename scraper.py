@@ -21,9 +21,10 @@ async def join(client, current_channel) :
 async def scrape(client, current_channel, limit = 20) :
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
         if message.text:
-            print(message.text)
-            message_data.append[]
-    return
+            # print(message.text)
+            message_data.append([message.id, message.date, message.text, message.views, f"{current_channel}"])
+        message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
+    return message_df
 
 async def main() :
     api_key = '14913236'
