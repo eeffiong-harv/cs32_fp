@@ -42,7 +42,7 @@ async def scrape(client, current_channel, start_date, end_date, limit = messagel
         message_df.to_csv(f'{current_channel[13:]}_messages.csv', encoding = 'utf-8')
         print(f"Finished scraping {current_channel}. {len(message_data)} Messages saved to {current_channel[13:]}_messages.csv.")
     else :
-        print(f"No {current_channel} posts found during specified period.")
+        print(f"No {current_channel[]} posts found during specified period.")
 
     return message_df
 
