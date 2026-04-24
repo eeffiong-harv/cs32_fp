@@ -41,7 +41,7 @@ async def setup() :
 
     key_valid = False
     while key_valid == False :
-        api_key = input("What is your API Key?")
+        api_key = input("What is your API Key? ")
         if api_key.isdigit() != True or len(api_key) != 8 :
             print(f"'{api_key}' invalid. (Ensure you input an 8 digit key)")
         else :
@@ -49,7 +49,7 @@ async def setup() :
 
     hash_valid = False
     while hash_valid == False :
-        api_hash = input("What is your API Hash?")
+        api_hash = input("What is your API Hash? ")
         if len(api_hash) != 32 :
             print(f"'{api_hash}' invalid. (Ensure you input an 32 characters long)")
         else :
@@ -69,7 +69,7 @@ async def setup() :
             else:
                 channel_list.append(channel_input)
                 link_valid = True
-                print(channel_list, "SUCCESS")
+                print(f"{channel_input[13:]} added to channel list.")
                 break
 
         while len(channel_list) == 1:
@@ -80,12 +80,12 @@ async def setup() :
             else:
                 channel_list.append(channel_input)
                 link_valid = True
-                print(channel_list, "SUCCESS")
+                print(f"{channel_input[13:]} added to channel list.")
                 break
 
         user_input_valid = False
         while user_input_valid == False :
-            end_channel_loop = input("Would you like to add a channel? (y/n) ")
+            end_channel_loop = input(f"Current Channel List:\n{channel_list}\nWould you like to add a channel? (y/n) ")
             if end_channel_loop == "y" :
                 channel_loop = channel_loop
                 user_input_valid = True
@@ -147,7 +147,7 @@ async def main() :
         await join(client, current_channel)
         print(f"Attempting to scrape {current_channel[13:]} posts from between {start_date.strftime('%b %d, %Y')} and {end_date.strftime('%b %d, %Y')}")
         scraper = await scrape(client, current_channel, start_date, end_date)
-        print(scraper)
+        # print(scraper)
         print(f"Finished scraping {current_channel}. Messages saved to {current_channel[13:]}_messages.csv.")
         current_channel_num += 1
     print(f"Completed scraping messages from all channels!")
