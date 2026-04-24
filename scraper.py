@@ -126,4 +126,3 @@ async def main() :
 
 if __name__ == "__main__":
     asyncio.run(main())
-C:\Users\emman\pyproj\kzproj\kzscrape.py
