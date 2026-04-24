@@ -131,11 +131,11 @@ async def setup() :
 
 async def main() :
     if auto == True:
-        api_key = '14913236'
-        api_hash = 'b1bdcf76b1a430359e766da11638714e'
+        api_key = ''
+        api_hash = ''
         channel_list = ['https://t.me/nytimes','https://t.me/cnn_world_news']
-        start_date = datetime.datetime(2025, 1, 1, tzinfo=datetime.timezone.utc)
-        end_date = datetime.datetime(2026, 1, 31, tzinfo=datetime.timezone.utc)
+        start_date = datetime.datetime(2024, 1, 1, tzinfo=datetime.timezone.utc)
+        end_date = datetime.datetime(2025, 1, 31, tzinfo=datetime.timezone.utc)
     else:
         api_key, api_hash, channel_list, start_date, end_date = await setup()
 
