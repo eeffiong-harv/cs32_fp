@@ -11,22 +11,25 @@ messagelimit = 20 # Set to an integer or None
 
 # Function to Join Telegram Channel
 async def join(client, current_channel) :
+
     try:
         await client.start() #logging in and connecting to telegram client
         print(f"Attempting to join {current_channel}...")
         await client(JoinChannelRequest(current_channel)) # joining specified channel
         print(f"Successfully joined {current_channel}!\n")
+
     except:
         print(f"Failed to join {current_channel}.")
         return
 
 # Function for Scraping telegram channels and saving as .csv
 async def scrape(client, current_channel, start_date, end_date, limit = 10) :
-    message_data = []
-    message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
+
+    message_data = [] # list to collect messages + metadata
+    message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel']) # df w/ columns for messages + metadata
+
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
         if message.text:
-            # print(message.text)
             message_data.append([message.id, message.date, message.text, message.views, f"{current_channel[13:]}"])
         if message.date > end_date :
             break
