@@ -5,7 +5,7 @@ import asyncio
 import pandas
 import re
 
-auto = False
+auto = True
 
 
 
@@ -23,7 +23,7 @@ async def join(client, current_channel) :
 
 async def scrape(client, current_channel, start_date, end_date, limit = 10) :
     message_data = []
-    # message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
+    message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
     async for message in client.iter_messages(current_channel, limit, offset_date = start_date, reverse = True) :
         if message.text:
             # print(message.text)
@@ -133,9 +133,9 @@ async def main() :
     if auto == True:
         api_key = '14913236'
         api_hash = 'b1bdcf76b1a430359e766da11638714e'
-        current_channel = 'https://t.me/nytimes'
-        start_date = datetime.datetime(2026, 2, 1, tzinfo=datetime.timezone.utc)
-        end_date = datetime.datetime(2026, 4, 1, tzinfo=datetime.timezone.utc)
+        channel_list = ['https://t.me/nytimes','https://t.me/cnn_world_news']
+        start_date = datetime.datetime(2025, 1, 1, tzinfo=datetime.timezone.utc)
+        end_date = datetime.datetime(2026, 1, 31, tzinfo=datetime.timezone.utc)
     else:
         api_key, api_hash, channel_list, start_date, end_date = await setup()
 
