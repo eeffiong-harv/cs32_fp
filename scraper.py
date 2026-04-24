@@ -14,7 +14,7 @@ async def join(client, current_channel) :
 
     try:
         await client.start() #logging in and connecting to telegram client
-        print(f"Attempting to join {current_channel}...")
+        print(f"\nAttempting to join {current_channel}...")
         await client(JoinChannelRequest(current_channel)) # joining specified channel
         print(f"Successfully joined {current_channel}!\n")
 
@@ -150,7 +150,7 @@ async def main() :
         start_date = datetime.datetime(2024, 1, 1, tzinfo=datetime.timezone.utc)
         end_date = datetime.datetime(2025, 1, 31, tzinfo=datetime.timezone.utc)
     else:
-        print("Welcome to NewScraper!\n")
+        print("Welcome to NewScraper!")
         api_key, api_hash, channel_list, start_date, end_date = await setup() # Run setup() function to collect info + parameters
 
     client = TelegramClient('session_name', api_key, api_hash) # Building client (Each time session name is updated, phone number will need to be re-entered/verified).
