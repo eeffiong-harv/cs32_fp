@@ -6,6 +6,7 @@ import pandas
 import re
 
 async def join(client, current_channel) :
+    await client.start() #logging in and connecting to telegram client
     await client(JoinChannelRequest(current_channel))
 
     return
