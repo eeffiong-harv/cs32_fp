@@ -28,10 +28,13 @@ async def scrape(client, current_channel, start_date, end_date, limit = 10) :
         if message.text:
             print(message.text)
             message_data.append([message.id, message.date, message.text, message.views, f"{current_channel[13:]}"])
-        message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
-        message_df.to_csv(f'{current_channel[13:]}_messages.csv', encoding = 'utf-8')
         if message.date > end_date :
             break
+
+    if message_data :
+        message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
+        message_df.to_csv(f'{current_channel[13:]}_messages.csv', encoding = 'utf-8')
+
     return message_df
 
 async def setup() :
