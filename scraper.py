@@ -4,6 +4,11 @@ import datetime
 import pandas
 import re
 
+def join(client, current_channel) :
+    a = client(JoinChannelRequest(current_channel))
+
+    return a
+
 def main() :
 
     key_valid = False
@@ -112,8 +117,5 @@ def main() :
     # print(f'')
     return
 
-def join(client, current_channel) :
-    a = client(JoinChannelRequest(current_channel))
-
-    return a
-main()
+if __name__ == "__main__":
+    main()
