@@ -16,6 +16,7 @@ To use this tool you will need:
 - **Telethon** _Easily interfacing with Telegram's API_ `https://docs.telethon.dev/en/stable/`
 - **Pandas** _Creating and manipulating dataframes_ `https://matplotlib.org/stable/index.html`
 - **MatPlotLib** _Graphing Data Visualizations_ `https://pandas.pydata.org/docs/`
+- **Stopword_List** _Cleaning Channel Messages_ `https://pypi.org/project/stop-words/`
 
 **Python Library Packages that will be used:**
 - **os** _easy directory pointing_

@@ -7,7 +7,7 @@ import sys
 import asyncio # For running asynchronous code (Telethon library employs this)
 
 
-preload = False # Set to 'True' to run with preloaded user information and channel list
+preload = True # Set to 'True' to run with preloaded user information and channel list
 messagelimit = None # Set to an integer or None
 
 # Function to Join Telegram Channel
@@ -145,8 +145,8 @@ async def main() :
     # Enter user info + parameters here to skip q&a phase
     if preload == True:
         print("Welcome to NewScraper: a tool designed to scrape and compare word usage from the Telegram posts of News Publications.\nRunning with preloaded user info & channel list...")
-        api_key = ''
-        api_hash = ''
+        api_key = '14913236'
+        api_hash = 'b1bdcf76b1a430359e766da11638714e'
         channel_list = ['https://t.me/nytimes','https://t.me/BBCWorld']
         start_date = datetime.datetime(2024, 1, 1, tzinfo=datetime.timezone.utc)
         end_date = datetime.datetime(2024, 1, 31, tzinfo=datetime.timezone.utc)
