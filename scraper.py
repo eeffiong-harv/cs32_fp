@@ -3,11 +3,12 @@ from telethon.tl.functions.channels import JoinChannelRequest
 import datetime # For using date objects (how info is stored in telegram)
 import pandas # For creating and exporting dataframes
 import re # For using regex (validating user entries)
+import sys
 import asyncio # For running asynchronous code (Telethon library employs this)
 
 
 preload = False # Set to 'True' to run with preloaded user information and channel list
-messagelimit = 30 # Set to an integer or None
+messagelimit = None # Set to an integer or None
 
 # Function to Join Telegram Channel
 async def join(client, current_channel) :
@@ -23,8 +24,8 @@ async def join(client, current_channel) :
         return
 
 # Function for Scraping telegram channels and saving as .csv
+posts_found = True
 async def scrape(client, current_channel, start_date, end_date, limit = messagelimit) :
-
     print(f"Attempting to scrape {current_channel[13:]} posts from {start_date.strftime('%b %d, %Y')}-{end_date.strftime('%b %d, %Y')}...")
 
     message_data = [] # list to collect messages + metadata
@@ -37,14 +38,18 @@ async def scrape(client, current_channel, start_date, end_date, limit = messagel
         if message.date > end_date :
             break
     # Creating and exporting .csv of messages + metadata
+
     if message_data :
         message_df = pandas.DataFrame(message_data, columns = ['ID', 'Date', 'Message', 'Views', 'Channel'])
         message_df.to_csv(f'{current_channel[13:]}_messages.csv', encoding = 'utf-8')
         print(f"Finished scraping {current_channel}. {len(message_data)} Messages saved to {current_channel[13:]}_messages.csv.")
+        posts_found = True
     else :
         print(f"No {current_channel[13:]} posts found during specified period.")
+        posts_found = False
 
-    return message_df
+
+    return message_df, posts_found
 
 # Function for retrieving user info
 async def setup() :
@@ -52,7 +57,7 @@ async def setup() :
     # Retrieving user API Key
     key_valid = False
     while key_valid == False :
-        api_key = input("What is your API Key? ")
+        api_key = input("\nWhat is your API Key? ")
         if api_key.isdigit() != True or len(api_key) != 8 :
             print(f"'{api_key}' invalid. (Ensure you input an 8 digit key)")
         else :
@@ -75,7 +80,7 @@ async def setup() :
 
         # First and Third+ Channels
         while link_valid == False:
-            channel_input = input("What channel you would like to scrape? ")
+            channel_input = input("\nWhat channel you would like to scrape? ")
 
             if channel_input[0:13] != "https://t.me/" :
                 print(f"'{channel_input}' is an invalid link. Try again... (ensure link begins with 'https://t.me/')")
@@ -83,12 +88,12 @@ async def setup() :
             else:
                 channel_list.append(channel_input)
                 link_valid = True
-                print(f"{channel_input[13:]} added to channel list.")
+                print(f"\n{channel_input[13:]} added to channel list.")
                 break
 
         # Second Channel
         while len(channel_list) == 1:
-            channel_input = input("What is the second channel you would like to scrape? ")
+            channel_input = input(f"\nWhat is the second channel you would like to scrape? ")
             if channel_input[0:13] != "https://t.me/" :
                 print(f"'\n{channel_input}' is an invalid link. Try again... (ensure link begins with 'https://t.me/')")
                 link_valid = link_valid
@@ -98,24 +103,13 @@ async def setup() :
                 print(f"\n{channel_input[13:]} added to channel list.")
                 break
 
-        # Optional >3 Channels
-        user_input_valid = False
-        while user_input_valid == False :
-            end_channel_loop = input(f"\nCurrent Channel List:\n{channel_list}\n\nWould you like to add a channel? (y/n) ")
-            if end_channel_loop == "y" :
-                channel_loop = channel_loop
-                user_input_valid = True
-                link_valid = False
-            elif end_channel_loop == "n" :
-                channel_loop = False
-                user_input_valid = True
-            else:
-                print("Must select 'y' or 'n'. Try again...")
+        channel_loop = False ## <-- Limits Comparison to 2 Channels
+        user_input_valid = True ## <-- Limits Comparison to 2 Channels
 
     # Retrieving start date
     start_date_valid = False
     while start_date_valid == False :
-        start_date = input("What is the start date of your scrape? (Format: YYYY-MM-DD) ")
+        start_date = input("\nWhat is the start date of your scrape? (Format: YYYY-MM-DD) ")
         try :
             if re.fullmatch(r"\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])", start_date).span() != (0, 10) :
                 print(f"'{start_date}' is an invalid input. Try again...")
@@ -150,26 +144,32 @@ async def setup() :
 async def main() :
     # Enter user info + parameters here to skip q&a phase
     if preload == True:
-        print("Welcome to NewScraper! Running with preloaded user info & channel list...")
+        print("Welcome to NewScraper: a tool designed to scrape and compare word usage from the Telegram posts of News Publications.\nRunning with preloaded user info & channel list...")
         api_key = ''
         api_hash = ''
-        channel_list = ['https://t.me/nytimes','https://t.me/cnn_world_news']
+        channel_list = ['https://t.me/nytimes','https://t.me/BBCWorld']
         start_date = datetime.datetime(2024, 1, 1, tzinfo=datetime.timezone.utc)
-        end_date = datetime.datetime(2025, 1, 31, tzinfo=datetime.timezone.utc)
+        end_date = datetime.datetime(2024, 1, 31, tzinfo=datetime.timezone.utc)
     else:
-        print("Welcome to NewScraper!")
+        print("Welcome to NewScraper: a tool designed to scrape and compare word usage from the Telegram posts of News Publications.")
         api_key, api_hash, channel_list, start_date, end_date = await setup() # Run setup() function to collect info + parameters
-
+    print("\n--------------------[SCRAPING PROCESS INITIALIZED]--------------------")
     client = TelegramClient('session_name', api_key, api_hash) # Building client (Each time session name is updated, phone number will need to be re-entered/verified).
 
     current_channel_num = 0
     for channel in channel_list : # Looping through each channel in the list
         current_channel = channel_list[current_channel_num]
         await join(client, current_channel) # Joining telegram channel
-        await scrape(client, current_channel, start_date, end_date) # Scraping messages according to parameters
+        posts_found = await scrape(client, current_channel, start_date, end_date) # Scraping messages according to parameters
+        if posts_found[1] == False : # Case when there are no posts in a specified date range.
+            sys.exit("\nERROR: One or more channels has no posts between the specified dates. Please retry the script with new dates.")
         current_channel_num += 1
     print(f"\nCompleted scraping messages from all channels!")
-    return
+    print("\n--------------------[SCRAPING PROCESS COMPLETE]--------------------")
+    channel_name_list = []
+    for a in channel_list :
+        channel_name_list.append(a[13:])
+    return channel_name_list, start_date, end_date
 
 if __name__ == "__main__":
     asyncio.run(main())
